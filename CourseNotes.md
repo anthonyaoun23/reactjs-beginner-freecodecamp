@@ -73,4 +73,64 @@ Here the App component is the root of the tree. It can render header, MyInfo, an
 
 The app component usually should only have components in its return.
 
+##Mixing Javascript and JSX Together
+const firstName = "Bob"
+const lastName = "Ziroll"
+
+return (
+
+<h1>Hello firstName + " " + lastName!</h1>
+)
+
+This will not work. As expected, this will interpret whatever is in the h1 tag as text. The way to get around this is to wrap any javascript that you want to be interpreted by curly braces.
+
+Let's take a look at the 6 lines of code above. Everything other than the like containing the <h1> tag is interpreted as JS. The line containing the <h1> is interpreted as JSX and is treated just like HTML. Adding curly braces will allow you to have JS inside your JSX.
+
+Ex:
+
+function App() {
+const date = new Date()
+const hours = date.getHours()
+let timeOfDay
+
+if (hours < 12) {
+timeOfDay = "morning"
+} else if (hours >= 12 && hours < 17) {
+timeOfDay = "afternoon"
+} else {
+timeOfDay = "night"
+}
+
+return (
+
+<h1>Good {timeOfDay}!</h1>
+)
+}
+
 ##Styling react components
+
+ <h1 style="color: #FF8C00">Good {timeOfDay}!</h1> will not work.
+
+Invariant Violation: The `style` prop expects a mapping from style properties to values, not a string. For example, style={{marginRight: spacing + 'em'}} when using JSX. (/node_modules/fbjs/lib/invariant.js:42)
+
+  <h1 style={{color: "#FF8C00"}}>Good {timeOfDay}!</h1> will solve the problem.
+
+Something to remember is that when writing style inline, you cannot have a dash in js for variable names. When this occurs, you should simply use cammel case syntax instead.
+
+style={{color: "#FF8C00", background-color: "#FF2D00"}} will not work
+style={{color: "#FF8C00", backgroundColor: "#FF2D00"}} will work
+
+This can get long, so...
+const styles = {
+color: "#FF8C00",
+backgroundColor: "#FF2D00"
+}
+
+return (
+
+<h1 style={styles}>Good {timeOfDay}!</h1>
+)
+
+Having a variable for styles is a nice generic way of holding all your styling in a clean way.
+
+fontSize: "200px" is how you would have a js value for font size.

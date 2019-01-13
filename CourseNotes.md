@@ -40,4 +40,37 @@ Adjacent JSX elements must be wrapped in an enclosing tag.
 
 Exercise 1: Find in Exercise1.js
 
-##Functional Components
+Exercise 2: Find in Exercise2.js
+
+One of the main benefits of React is that we have the ability to create our own components
+By convention, we should only have 1 component per file.
+File should have same name as component (spelt exactly the same, for simplicity)
+
+To export component from file, use
+export default NameOfComponent
+
+then where you want to use the component, use
+import MyInfo from 'filepath/MyInfo.js'
+
+there is no need to have .js at end of import file because it is assumed that import files are js
+
+It is important to stay organized when building apps. Something you can always do is create a folder names Components which holds all components you create
+
+##Parent/Child Components
+Usually, your app will consists of complex hierarchies of components that eventually lead down to JSX elements
+
+index.js can have
+ReactDOM.render(<App />m document.getElementById("root"));
+of course, don't forget to import App from App.js
+
+React components should always have a capitalized first letter
+
+View ComponentVsElement.PNG
+React elements are what boil down to html elements. React components, as mentionned, are capitalized. Elements are lowercased.
+
+DOM is refered to as a treee where the html element is the most base root of that tree.
+Here the App component is the root of the tree. It can render header, MyInfo, and a footer.
+
+The app component usually should only have components in its return.
+
+##Styling react components

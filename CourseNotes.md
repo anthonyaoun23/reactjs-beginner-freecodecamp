@@ -134,3 +134,9 @@ return (
 Having a variable for styles is a nice generic way of holding all your styling in a clean way.
 
 fontSize: "200px" is how you would have a js value for font size.
+
+##Props - Understanding The Concept
+
+In regular HTML, an anchor (<a>) tag is useless without an href property. You must give it an href property so that it can link to something. Similarly, an image (<img>) needs a src property and value to display an image. Without that, nothing will show and it is completely useless. An input tag is interesting because without any properties/attributes, it will display on the page, however giving attributes like placeholder, name, and type will modify it and change the way it looks on the website.
+
+In React, we can make our components accept different properties and display differently using props.

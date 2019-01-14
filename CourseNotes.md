@@ -140,3 +140,39 @@ fontSize: "200px" is how you would have a js value for font size.
 In regular HTML, an anchor (<a>) tag is useless without an href property. You must give it an href property so that it can link to something. Similarly, an image (<img>) needs a src property and value to display an image. Without that, nothing will show and it is completely useless. An input tag is interesting because without any properties/attributes, it will display on the page, however giving attributes like placeholder, name, and type will modify it and change the way it looks on the website.
 
 In React, we can make our components accept different properties and display differently using props.
+
+##Components w/ Props
+
+<div className="contact-card">
+    <img src="http://placekitten.com/300/200"/>
+    <h3>Mr. Whiskerson</h3>
+    <p>Phone: (212) 555-1234</p>
+    <p>Email: mr.whiskaz@catnap.meow</p>
+</div>
+
+Becomes 
+
+<ContactCard 
+    name="Mr. Whiskerson" 
+    imgUrl="http://placekitten.com/300/200" 
+    phone="(212) 555-1234" 
+    email="mr.whiskaz@catnap.meow"
+/>
+
+All the different HTML tags essentially will turn into props for components. Now, here, you will access the props and their values in the ContactCard.js file.
+
+function ContactCard(props) {
+    return (
+        <div className="contact-card">
+            <img src={props.imgUrl}/>
+            <h3>{props.name}</h3>
+            <p>Phone: {props.phone}</p>
+            <p>Email: {props.email}</p>
+        </div>
+    )
+}
+
+
+
+
+            

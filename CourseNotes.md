@@ -1,16 +1,16 @@
-#Notes taken for 'Learn React for free' on Scrimba.com
+# Notes taken for 'Learn React for free' on Scrimba.com
 
-##Learning Philosophy
+## Learning Philosophy
 -The easy way is the hard way
 -Learn by doing
 -Woodworking analogy (read books, watch hours of youtube videos, but will not become good carpenter without actually building things)
 
-##Spaced Learning & repitition are key
+## Spaced Learning & repitition are key
 -Don't binge the course
 -Take frequent breaks
 -Re-watch past lessons for review
 
-##Why React?
+## Why React?
 -Virtual Dom (https://www.youtube.com/watch?v=BYbgopx44vo)
 -Reusable (and clearer) Web Components
 -Maintained by Facebook
@@ -56,7 +56,7 @@ there is no need to have .js at end of import file because it is assumed that im
 
 It is important to stay organized when building apps. Something you can always do is create a folder names Components which holds all components you create
 
-##Parent/Child Components
+## Parent/Child Components
 Usually, your app will consists of complex hierarchies of components that eventually lead down to JSX elements
 
 index.js can have
@@ -73,7 +73,7 @@ Here the App component is the root of the tree. It can render header, MyInfo, an
 
 The app component usually should only have components in its return.
 
-##Mixing Javascript and JSX Together
+## Mixing Javascript and JSX Together
 const firstName = "Bob"
 const lastName = "Ziroll"
 
@@ -87,7 +87,7 @@ This will not work. As expected, this will interpret whatever is in the h1 tag a
 Let's take a look at the 6 lines of code above. Everything other than the like containing the <h1> tag is interpreted as JS. The line containing the <h1> is interpreted as JSX and is treated just like HTML. Adding curly braces will allow you to have JS inside your JSX.
 
 Ex:
-
+'''
 function App() {
 const date = new Date()
 const hours = date.getHours()
@@ -106,8 +106,9 @@ return (
 <h1>Good {timeOfDay}!</h1>
 )
 }
+'''
 
-##Styling react components
+## Styling react components
 
  <h1 style="color: #FF8C00">Good {timeOfDay}!</h1> will not work.
 
@@ -135,7 +136,7 @@ Having a variable for styles is a nice generic way of holding all your styling i
 
 fontSize: "200px" is how you would have a js value for font size.
 
-##Props - Understanding The Concept
+## Props - Understanding The Concept
 
 In regular HTML, an anchor (<a>) tag is useless without an href property. You must give it an href property so that it can link to something. Similarly, an image (<img>) needs a src property and value to display an image. Without that, nothing will show and it is completely useless. An input tag is interesting because without any properties/attributes, it will display on the page, however giving attributes like placeholder, name, and type will modify it and change the way it looks on the website.
 
@@ -172,7 +173,7 @@ function ContactCard(props) {
     )
 }
 
-##Lifecycle Methods
+## Lifecycle Methods
 A lot is happening in the background when you are working with React. React components go through a series of phases/milestones during its lifetime in our application. Every componenent will under go a series of events when its being rendered and updated.
 
 http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/ is a nice visualisation of this.
@@ -184,6 +185,37 @@ https://reactjs.org/blog/2018/03/29/react-v-16-3.html#component-lifecycle-change
 3- ComponentWillReceiveProps -> When someone gives you a gift. The componenent can be receiving props from a parent componenent. Every time this happens, this method will run. It receives a parameter called "nextProps". It's essentially a method to check wehter or not the props have changed. That said, this method will be depracated. You should not use this. Once React 17 comes out, this method will be completely removed, but it's still good to know in case you are looking at legacy code.
 4- shouldComponentUpdate -> Making a decision as to whether you should chnage your clothes or not. Behind the scene, if React has any  kind of question at all as to whether a component needs to re-render, it will always chose to re-render the componenent just in case. Re-rendering can slow down big applications if the componenent is large and componenents can be re-rendered uselessly. This method allows us to stop that from happenning, or at least add some logic as to when the componenent should re-render. It receives parameters "nextProps" and "nextState". You must return true if you want it to update. Return false if you don't.
 5- componentWillUnmount -> Just like in life, all good things come to an end, and your componenent will eventually unmount/dissapear from the screen. The main use for this method is to do some cleanup or teardown of anything that you have setup that could potentially leave some clutter in the DOM or in the application. For ex: If you in componentDidMount wanted to add an eventListener, this method would be a chance to remove that. 
+
+6- getDerivedStateFromProps is a Static method and receives "props" and "state". You return the new, updates sstate based upon the props
+https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops
+https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
+7- getSnapshotBeforeUpdate -> Create a backup of the current way things are. An object called snapshot.
+https://reactjs.org/docs/react-component.html#getsnapshotbeforeupdate
+
+## Conditional Rendering
+Load something on screen if a condition is true.
+    // &&
+    // true && false
+    Js check the bool value of the thing on the left. If it is true, it immidietly return the thing on the right. When its false, it return false right away.
+
+## Fetching Data from an API
+Built in JS tool called fetch - nice, easy promised based way to perform http requeswts so we can get any kind fo data we need.
+https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch
+
+Starwars API CORS Enabled
+https://swapi.co/
+
+Promises
+https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261
+
+Inside of componentDidMount, we can call fetch("https://swapi.co/").then(response => response.json()).then(data=>console.log(data))
+.json() turns data into js object JSON...
+
+```javascript
+var s = "JavaScript syntax highlighting";
+alert(s);
+```
+
 
 
 

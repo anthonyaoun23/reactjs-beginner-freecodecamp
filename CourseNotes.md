@@ -172,6 +172,20 @@ function ContactCard(props) {
     )
 }
 
+##Lifecycle Methods
+A lot is happening in the background when you are working with React. React components go through a series of phases/milestones during its lifetime in our application. Every componenent will under go a series of events when its being rendered and updated.
+
+http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/ is a nice visualisation of this.
+https://engineering.musefind.com/react-lifecycle-methods-how-and-when-to-use-them-2111a1b692b1
+https://reactjs.org/blog/2018/03/29/react-v-16-3.html#component-lifecycle-changes
+
+1- The render method -> like getting dressed for the day. It determines what gets rendered to the screen. This method can be called many times. When react notices a change like a prop of state change, React will re-render the component.
+2- ComponentDidMount -> you were just born. This method runs the very first time the component shows up on the screen. When a component is re-rendered, it is not un-mounted and re-mounted. This method is nice for doing things like making api calls 
+3- ComponentWillReceiveProps -> When someone gives you a gift. The componenent can be receiving props from a parent componenent. Every time this happens, this method will run. It receives a parameter called "nextProps". It's essentially a method to check wehter or not the props have changed. That said, this method will be depracated. You should not use this. Once React 17 comes out, this method will be completely removed, but it's still good to know in case you are looking at legacy code.
+4- shouldComponentUpdate -> Making a decision as to whether you should chnage your clothes or not. Behind the scene, if React has any  kind of question at all as to whether a component needs to re-render, it will always chose to re-render the componenent just in case. Re-rendering can slow down big applications if the componenent is large and componenents can be re-rendered uselessly. This method allows us to stop that from happenning, or at least add some logic as to when the componenent should re-render. It receives parameters "nextProps" and "nextState". You must return true if you want it to update. Return false if you don't.
+5- componentWillUnmount -> Just like in life, all good things come to an end, and your componenent will eventually unmount/dissapear from the screen. The main use for this method is to do some cleanup or teardown of anything that you have setup that could potentially leave some clutter in the DOM or in the application. For ex: If you in componentDidMount wanted to add an eventListener, this method would be a chance to remove that. 
+
+
 
 
 

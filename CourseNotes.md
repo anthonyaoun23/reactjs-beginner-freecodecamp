@@ -215,13 +215,40 @@ https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pr
 Inside of componentDidMount, we can call fetch("https://swapi.co/").then(response => response.json()).then(data=>console.log(data))
 .json() turns data into js object JSON...
 
-```javascript
-var s = "JavaScript syntax highlighting";
-alert(s);
+```
+class App extends Component {
+    constructor() {
+        super()
+        this.state = {
+            loading: false,
+            character: {}
+        }
+    }
+    
+    componentDidMount() {
+        this.setState({loading: true})
+        fetch("https://swapi.co/api/people/1")
+            .then(response => response.json())
+            .then(data => {
+                this.setState({
+                    loading: false,
+                    character: data
+                })
+            })
+    }
+    
+    render() {
+        const text = this.state.loading ? "loading..." : this.state.character.name
+        return (
+            <div>
+                <p>{text}</p>
+            </div>
+        )
+    }
+}
 ```
 
-
-
+ 
 
 
 
